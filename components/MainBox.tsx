@@ -1,8 +1,10 @@
 import { styled } from "../stitches.config";
+import { vh, vw } from "../styles/utils";
 import Box from "../components/Box";
 import ShapeWord from "./ShapeWord";
 import ShapeHeart from "./ShapeHeart";
 import ShapeFlower from "./ShapeFlower";
+import { LayoutType } from "../pages/index";
 
 const ShapeBg = styled(Box, {
   position: "absolute",
@@ -24,7 +26,7 @@ const ShapeBox = styled(Box, {
     type: {
       word: {
         $$top: 0,
-        $$height: "50vh",
+        $$height: vh(50),
 
         top: "$$top",
         height: "$$height",
@@ -37,7 +39,7 @@ const ShapeBox = styled(Box, {
       },
       heart: {
         $$top: "27.0833333%",
-        $$height: "40.3645833vh",
+        $$height: vh(40.3645833),
 
         top: "$$top",
         height: "$$height",
@@ -50,7 +52,7 @@ const ShapeBox = styled(Box, {
       },
       flower: {
         $$top: "53.90625%",
-        $$height: "46.2239583vh",
+        $$height: vh(46.2239583),
 
         top: "$$top",
         height: "$$height",
@@ -70,22 +72,75 @@ const Root = styled(Box, {
   width: "100%",
   height: "100%",
   isolation: "isolate",
+
+  variants: {
+    align: {
+      alignEnd: {
+        [`& ${ShapeBox}`]: {
+          left: "auto",
+          right: 0,
+        },
+      },
+      "": {},
+    },
+    layoutType: {
+      resizedBothSides: {
+        height: `calc(${vh(32)} * 2.157303371)`,
+        width: vh(32),
+
+        [`& ${ShapeBox}`]: {
+          width: "100%",
+          height: "auto",
+
+          "& svg": {
+            width: "100%",
+            height: "auto",
+          },
+        },
+      },
+      resizedDefault: {
+        height: `calc(${vh(40)} * 2.157303371)`,
+        width: vh(40),
+
+        [`& ${ShapeBox}`]: {
+          width: "100%",
+          height: "auto",
+
+          "& svg": {
+            width: "100%",
+            height: "auto",
+          },
+        },
+      },
+      oneSide: {},
+      default: {},
+    },
+  },
 });
 
-const MainBox = () => {
+const MainBox = ({
+  layoutType,
+  alignEnd,
+}: {
+  layoutType: LayoutType;
+  alignEnd?: boolean;
+}) => {
+  const heightBased =
+    layoutType !== "resizedBothSides" && layoutType !== "resizedDefault";
+
   return (
-    <Root>
-      <ShapeBox type="word">
+    <Root layoutType={layoutType} align={alignEnd ? "alignEnd" : ""}>
+      <ShapeBox type="word" className="shape-word">
         <ShapeWord />
-        <ShapeBg />
+        {heightBased && <ShapeBg />}
       </ShapeBox>
-      <ShapeBox type="heart">
+      <ShapeBox type="heart" className="shape-heart">
         <ShapeHeart />
-        <ShapeBg />
+        {heightBased && <ShapeBg />}
       </ShapeBox>
-      <ShapeBox type="flower">
+      <ShapeBox type="flower" className="shape-flower">
         <ShapeFlower />
-        <ShapeBg />
+        {heightBased && <ShapeBg />}
       </ShapeBox>
     </Root>
   );

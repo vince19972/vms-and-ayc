@@ -1,8 +1,10 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import useVH from "react-vh";
 import { globalStyles } from "../styles/global";
 
 function App({ Component, pageProps }: AppProps) {
+  useVH();
   globalStyles();
 
   return (
