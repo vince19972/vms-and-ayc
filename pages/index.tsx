@@ -3,9 +3,9 @@ import Box from "../components/Box";
 import MainBox from "../components/MainBox";
 
 const ShapesBox = styled(Box, {
-  width: "30vw",
+  // width: "30vw",
   height: "100vh",
-  backgroundColor: "$colors$surface",
+  // backgroundColor: "$colors$surface",
 });
 
 export default function Home() {

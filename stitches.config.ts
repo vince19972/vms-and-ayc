@@ -40,7 +40,6 @@ export const {
     }),
   },
   media: {
-    bp1: "(min-width: 520px)",
-    bp2: "(min-width: 900px)",
+    desktop1: "(min-width: 2060px)",
   },
 });
