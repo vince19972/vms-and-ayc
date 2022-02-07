@@ -16,9 +16,11 @@ export const {
       word: "hsl(48, 100%, 50%, 1)",
       surface: "hsla(315, 73%, 79%, 1)",
       surfaceText: "hsla(311, 81%, 78%, 1)",
+      defaultText: "hsla(0, 0%, 0%, 1)",
     },
     fonts: {
-      system: "system-ui",
+      zh: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      en: 'Noto Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     },
   },
   utils: {

@@ -1,5 +1,7 @@
 import { styled } from "../stitches.config";
 
+export const heightRatio = 46.2239583;
+
 const Root = styled("svg", {
   "& path": {
     fill: "$colors$flower",

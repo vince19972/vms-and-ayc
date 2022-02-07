@@ -4,6 +4,8 @@ import { styled } from "../stitches.config";
 import { vh, vw } from "../styles/utils";
 import Box from "../components/Box";
 import MainBox from "../components/MainBox";
+import CopyBox from "../components/CopyBox";
+import { heightRatio } from "../components/ShapeFlower";
 
 export type LayoutType =
   | "resizedBothSides"
@@ -29,6 +31,8 @@ const getLayoutType: GetLayoutType = (windowWidth, windowHeight) => {
 
 const ShapesBox = styled(Box, {
   height: vh(100),
+  width: vh(heightRatio),
+  maxWidth: vh(heightRatio),
   flexGrow: 1,
   overflow: "hidden",
 
@@ -52,6 +56,32 @@ const ShapesBox = styled(Box, {
         backgroundColor: "$colors$surface",
       },
       default: {},
+    },
+  },
+});
+
+const CopiesBox = styled(Box, {
+  position: "relative",
+  variants: {
+    mode: {
+      resizedBothSides: {
+        width: `calc(100% - ${vw(25)})`,
+        maxWidth: `calc(100% - ${vw(25)})`,
+      },
+      oneSide: {
+        width: `calc(100% - ${vh(heightRatio)})`,
+        maxWidth: `calc(100% - ${vh(heightRatio)})`,
+      },
+      resizedDefault: {
+        position: "absolute",
+        width: vw(100),
+        maxWidth: vw(100),
+      },
+      default: {
+        position: "absolute",
+        width: vw(100),
+        maxWidth: vw(100),
+      },
     },
   },
 });
@@ -85,6 +115,10 @@ export default function Home() {
       <ShapesBox mode={layoutType}>
         <MainBox layoutType={layoutType} />
       </ShapesBox>
+
+      <CopiesBox mode={layoutType}>
+        <CopyBox layoutType={layoutType} />
+      </CopiesBox>
 
       {layoutType === "resizedBothSides" && (
         <ShapesBox mode={layoutType}>

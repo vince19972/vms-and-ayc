@@ -1,9 +1,9 @@
 import { styled } from "../stitches.config";
-import { vh, vw } from "../styles/utils";
+import { vh } from "../styles/utils";
 import Box from "../components/Box";
 import ShapeWord from "./ShapeWord";
 import ShapeHeart from "./ShapeHeart";
-import ShapeFlower from "./ShapeFlower";
+import ShapeFlower, { heightRatio } from "./ShapeFlower";
 import { LayoutType } from "../pages/index";
 
 const ShapeBg = styled(Box, {
@@ -52,7 +52,7 @@ const ShapeBox = styled(Box, {
       },
       flower: {
         $$top: "53.90625%",
-        $$height: vh(46.2239583),
+        $$height: vh(heightRatio),
 
         top: "$$top",
         height: "$$height",
