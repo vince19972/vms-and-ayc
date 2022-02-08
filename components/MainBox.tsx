@@ -99,8 +99,8 @@ const Root = styled(Box, {
         },
       },
       resizedDefault: {
-        height: `calc(${vh(40)} * 2.157303371)`,
-        width: vh(40),
+        height: `calc(${vh(42.5)} * 2.157303371)`,
+        width: vh(42.5),
 
         [`& ${ShapeBox}`]: {
           width: "100%",
@@ -113,7 +113,17 @@ const Root = styled(Box, {
         },
       },
       oneSide: {},
-      default: {},
+      default: {
+        [`& ${ShapeBox}`]: {
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+
+          "& svg": {
+            position: "absolute",
+          },
+        },
+      },
     },
   },
 });

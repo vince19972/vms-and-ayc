@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useResizeDetector } from "react-resize-detector";
 import { styled } from "../stitches.config";
 import { vh, vw } from "../styles/utils";
@@ -22,7 +22,7 @@ const getLayoutType: GetLayoutType = (windowWidth, windowHeight) => {
   if (windowWidth / windowHeight > 1.2) {
     return "oneSide";
   }
-  if (windowWidth / windowHeight > 0.5) {
+  if (windowWidth / windowHeight > 0.6) {
     return "resizedDefault";
   }
 
@@ -55,7 +55,11 @@ const ShapesBox = styled(Box, {
         justifyContent: "center",
         backgroundColor: "$colors$surface",
       },
-      default: {},
+      default: {
+        width: vw(100),
+        maxWidth: vw(100),
+        backgroundColor: "$colors$surface",
+      },
     },
   },
 });
