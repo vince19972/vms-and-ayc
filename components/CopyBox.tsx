@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { styled } from "../stitches.config";
-import { vh } from "../styles/utils";
+import { vh, vw } from "../styles/utils";
 import Box from "./Box";
 import HeroText from "./HeroText";
 import HeroTextEn from "./HeroTextEn";
@@ -22,9 +22,13 @@ const AloneHeroBox = styled(Box, {
   $$id: "AloneHeroBox",
 
   height: `calc($$height * $$h_hero)`,
+  marginTop: "-2%",
 });
 const AdjacentNameSetsBox = styled(Box, {
   $$id: "AdjacentNameSetsBox",
+  display: "flex",
+  justifyContent: "space-around",
+  width: "$$adjacentBoxWidth",
 });
 
 const WrappedHeroBox = styled(Box, {
@@ -37,13 +41,39 @@ const HorizontalSetsBox = styled(Box, {
 
   [`& ${NameSetBox}`]: {
     position: "absolute",
-    "&:first-child": {
-      top: "18%",
-      left: "-92%",
-    },
-    "&:last-child": {
-      top: "17%",
-      right: "-91%",
+  },
+
+  variants: {
+    layoutType: {
+      resizedBothSides: {
+        [`& ${NameSetBox}`]: {
+          "&:first-child": {
+            top: "18%",
+            left: "-92%",
+          },
+          "&:last-child": {
+            top: "17%",
+            right: "-91%",
+          },
+        },
+      },
+      oneSide: {
+        [`& ${WrappedHeroBox}`]: {
+          marginTop: "-10%",
+        },
+        [`& ${NameSetBox}`]: {
+          "&:first-child": {
+            top: "18%",
+            left: "-140%",
+          },
+          "&:last-child": {
+            top: "17%",
+            right: "-139%",
+          },
+        },
+      },
+      resizedDefault: {},
+      default: {},
     },
   },
 });
@@ -61,89 +91,70 @@ const ZhInfoBox = styled(Box, {
   textAlign: "center",
 });
 const InfoBox = styled(Box, {
+  [`& ${EnInfoBox}`]: {
+    color: "$$color",
+    marginBottom: "$$enInfo_mb",
+
+    "& h3": {
+      fontSize: "$$enInfo_h3",
+      marginBottom: "$$enInfo_h3Mb",
+    },
+    "& p": {
+      fontSize: "$$enInfo_p",
+    },
+  },
+  [`& ${ZhInfoBox}`]: {
+    color: "$$color",
+    "& h3": {
+      fontSize: "$$zhInfo_h3",
+      marginBottom: "$$zhInfo_h3Mb",
+    },
+    "& p": {
+      fontSize: "$$zhInfo_p",
+    },
+  },
+
   variants: {
     layoutType: {
       resizedBothSides: {
-        [`& ${EnInfoBox}`]: {
-          color: "$colors$surfaceText",
-          marginBottom: `calc($$height * 0.025)`,
-
-          "& h3": {
-            fontSize: `calc($$height * 0.0125)`,
-            marginBottom: `calc($$height * 0.0085)`,
-          },
-          "& p": {
-            fontSize: `calc($$height * 0.018)`,
-          },
-        },
-        [`& ${ZhInfoBox}`]: {
-          color: "$colors$surfaceText",
-          "& h3": {
-            fontSize: `calc($$height * 0.0125)`,
-            marginBottom: `calc($$height * 0.0085)`,
-          },
-          "& p": {
-            fontSize: `calc($$height * 0.018)`,
-          },
-        },
+        $$color: "$colors$surfaceText",
+        $$enInfo_mb: `calc($$height * 0.025)`,
+        $$enInfo_h3: `calc($$height * 0.0125)`,
+        $$enInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$enInfo_p: `calc($$height * 0.018)`,
+        $$zhInfo_h3: `calc($$height * 0.0125)`,
+        $$zhInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$zhInfo_p: `calc($$height * 0.018)`,
       },
       oneSide: {
-        [`& ${EnInfoBox}`]: {
-          color: "$colors$surfaceText",
-
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
-        [`& ${ZhInfoBox}`]: {
-          color: "$colors$surfaceText",
-
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
+        $$color: "$colors$surfaceText",
+        $$enInfo_mb: `calc($$height * 0.025)`,
+        $$enInfo_h3: `calc($$height * 0.0125)`,
+        $$enInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$enInfo_p: `calc($$height * 0.018)`,
+        $$zhInfo_h3: `calc($$height * 0.0125)`,
+        $$zhInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$zhInfo_p: `calc($$height * 0.018)`,
       },
       resizedDefault: {
-        [`& ${EnInfoBox}`]: {
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
-        [`& ${ZhInfoBox}`]: {
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
+        $$color: "$colors$defaultText",
+        $$enInfo_mb: `calc($$height * 0.025)`,
+        $$enInfo_h3: `calc($$height * 0.0125)`,
+        $$enInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$enInfo_p: `calc($$height * 0.018)`,
+        $$zhInfo_h3: `calc($$height * 0.0125)`,
+        $$zhInfo_h3Mb: `calc($$height * 0.0085)`,
+        $$zhInfo_p: `calc($$height * 0.018)`,
       },
       default: {
-        [`& ${EnInfoBox}`]: {
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
-        [`& ${ZhInfoBox}`]: {
-          "& h3": {
-            fontSize: "",
-          },
-          "& p": {
-            fontSize: "",
-          },
-        },
+        $$color: "$colors$defaultText",
+        $$enInfo_mb: `calc($$height * 0.025)`,
+        $$enInfo_h3: `calc($$height * 0.01)`,
+        $$enInfo_h3Mb: `calc($$height * 0.008)`,
+        $$enInfo_p: `calc($$height * 0.015)`,
+        $$zhInfo_h3: `calc($$height * 0.01)`,
+        $$zhInfo_h3Mb: `calc($$height * 0.008)`,
+        $$zhInfo_p: `calc($$height * 0.014)`,
       },
     },
   },
@@ -184,10 +195,10 @@ const Root = styled(Box, {
       },
       oneSide: {
         $$horizontalOffset: vh(10),
-        $$width: "70%",
-        $$h_enHero: 0.2,
-        $$h_hero: 0.5,
-        $$h_nameSet: 0.4,
+        $$width: "80%",
+        $$h_enHero: 0.05,
+        $$h_hero: 0.45,
+        $$h_nameSet: 0.225,
         $$h_info: 0.2,
 
         "& svg path": {
@@ -197,25 +208,29 @@ const Root = styled(Box, {
       resizedDefault: {
         $$horizontalOffset: vh(10),
         $$width: "100%",
-        $$h_enHero: 0.2,
-        $$h_hero: 0.5,
-        $$h_nameSet: 0.4,
+        $$h_enHero: 0.045,
+        $$h_hero: 0.4,
+        $$h_nameSet: 0.2,
         $$h_info: 0.2,
 
+        $$adjacentBoxWidth: vh(40),
+
         "& svg path": {
-          fill: "$colors$surfaceText",
+          fill: "$colors$defaultText",
         },
       },
       default: {
-        $$horizontalOffset: vh(10),
+        $$horizontalOffset: vh(6),
         $$width: "100%",
-        $$h_enHero: 0.2,
-        $$h_hero: 0.5,
-        $$h_nameSet: 0.4,
+        $$h_enHero: 0.0425,
+        $$h_hero: 0.38,
+        $$h_nameSet: 0.18,
         $$h_info: 0.2,
 
+        $$adjacentBoxWidth: vw(100),
+
         "& svg path": {
-          fill: "$colors$surfaceText",
+          fill: "$colors$defaultText",
         },
       },
     },
@@ -260,7 +275,7 @@ const CopyBox = ({ layoutType }: { layoutType: LayoutType }) => {
       )}
 
       {layoutMode === "separated" && (
-        <HorizontalSetsBox>
+        <HorizontalSetsBox layoutType={layoutType}>
           <NameSetBox>
             <NameVince />
           </NameSetBox>
