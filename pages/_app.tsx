@@ -3,9 +3,9 @@ import Head from "next/head";
 import useVH from "react-vh";
 import { globalStyles } from "../styles/global";
 
-const title = "Vince Shao and Amanda Chang";
+const title = "邵 & 張 - Vince and Amanda";
 const description =
-  "Vince MingPu Shao and Amanda YiChen Chang are getting married ✨";
+  "✨ 邵跟張要結婚啦 ✨ Vince and Amanda are getting married ✨";
 const url = "https://vms-and-ayc.vercel.app/";
 
 function App({ Component, pageProps }: AppProps) {
