@@ -85,8 +85,8 @@ const Root = styled(Box, {
     },
     layoutType: {
       resizedBothSides: {
-        height: `calc(${vh(32)} * 2.157303371)`,
-        width: vh(32),
+        height: `calc(${vh(38)} * 2.157303371)`,
+        width: vh(38),
 
         [`& ${ShapeBox}`]: {
           width: "100%",

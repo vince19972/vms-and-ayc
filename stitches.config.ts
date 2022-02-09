@@ -11,12 +11,13 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      flower: "hsla(36, 100%, 50%, 1)",
-      heart: "hsla(0, 100%, 60%, 1)",
-      word: "hsl(48, 100%, 50%, 1)",
-      surface: "hsla(315, 73%, 79%, 1)",
+      flower: "#FF8000",
+      heart: "#FF234D",
+      word: "#FFE300",
+      surface: "#FFB4E2",
       surfaceText: "hsla(311, 81%, 78%, 1)",
-      defaultText: "hsla(0, 0%, 0%, 1)",
+      brightText: "#FFFFFF",
+      defaultText: "#000000",
     },
     fonts: {
       zh: 'Noto Sans TC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',

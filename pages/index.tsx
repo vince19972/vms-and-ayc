@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import useDebouncedEffect from "use-debounced-effect";
 import { useResizeDetector } from "react-resize-detector";
+import { AnimatePresence, motion } from "framer-motion";
 import { styled } from "../stitches.config";
 import { vh, vw } from "../styles/utils";
 import Box from "../components/Box";
+import Veil, { veilAttrs } from "../components/Veil";
 import MainBox from "../components/MainBox";
 import CopyBox from "../components/CopyBox";
 import { heightRatio } from "../components/ShapeFlower";
@@ -71,6 +74,7 @@ const CopiesBox = styled(Box, {
       resizedBothSides: {
         width: `calc(100% - ${vw(25)})`,
         maxWidth: `calc(100% - ${vw(25)})`,
+        backgroundColor: "$colors$surface",
       },
       oneSide: {
         width: `calc(100% - ${vh(heightRatio)})`,
@@ -90,19 +94,22 @@ const CopiesBox = styled(Box, {
   },
 });
 
-const Root = styled(Box, {
+const Root = styled(motion.div, {
   display: "flex",
   justifyContent: "space-between",
 });
 
 export default function Home() {
+  const [showVeil, setShowVeil] = useState(false);
   const mainFrameDetector = useResizeDetector({
     refreshMode: "throttle",
     refreshRate: 250,
     refreshOptions: {
       trailing: true,
     },
+    onResize: () => setShowVeil(true),
   });
+  const [prevFrameValue, setPrevFrameValue] = useState("");
   const [layoutType, setLayoutType] = useState<LayoutType>("default");
 
   useEffect(() => {
@@ -112,23 +119,45 @@ export default function Home() {
     );
 
     setLayoutType(layoutType);
+    setPrevFrameValue(`${mainFrameDetector.width}-${mainFrameDetector.height}`);
   }, [mainFrameDetector.width, mainFrameDetector.height]);
 
+  useDebouncedEffect(
+    () => {
+      if (
+        `${mainFrameDetector.width}-${mainFrameDetector.height}` !==
+        prevFrameValue
+      ) {
+        setShowVeil(false);
+      }
+    },
+    800,
+    [mainFrameDetector.width, mainFrameDetector.height]
+  );
+
   return (
-    <Root ref={mainFrameDetector.ref}>
-      <ShapesBox mode={layoutType}>
-        <MainBox layoutType={layoutType} />
-      </ShapesBox>
+    <>
+      <AnimatePresence>{showVeil && <Veil key="veil" />}</AnimatePresence>
 
-      <CopiesBox mode={layoutType}>
-        <CopyBox layoutType={layoutType} />
-      </CopiesBox>
+      <AnimatePresence>
+        {!showVeil && (
+          <Root ref={mainFrameDetector.ref} key="main" {...veilAttrs}>
+            <ShapesBox mode={layoutType}>
+              <MainBox layoutType={layoutType} />
+            </ShapesBox>
 
-      {layoutType === "resizedBothSides" && (
-        <ShapesBox mode={layoutType}>
-          <MainBox layoutType={layoutType} alignEnd />
-        </ShapesBox>
-      )}
-    </Root>
+            <CopiesBox mode={layoutType}>
+              <CopyBox layoutType={layoutType} />
+            </CopiesBox>
+
+            {layoutType === "resizedBothSides" && (
+              <ShapesBox mode={layoutType}>
+                <MainBox layoutType={layoutType} alignEnd />
+              </ShapesBox>
+            )}
+          </Root>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
