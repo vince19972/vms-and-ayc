@@ -90,6 +90,11 @@ const ZhInfoBox = styled(Box, {
   fontWeight: 700,
   textAlign: "center",
 });
+const NoteBox = styled("p", {
+  fontWeight: 400,
+  textAlign: "center",
+  fontFamily: "$fonts$zh",
+});
 const InfoBox = styled(Box, {
   [`& ${EnInfoBox}`]: {
     color: "$$color",
@@ -105,6 +110,8 @@ const InfoBox = styled(Box, {
   },
   [`& ${ZhInfoBox}`]: {
     color: "$$color",
+    marginBottom: "$$zhInfo_mb",
+
     "& h3": {
       fontSize: "$$zhInfo_h3",
       marginBottom: "$$zhInfo_h3Mb",
@@ -112,6 +119,10 @@ const InfoBox = styled(Box, {
     "& p": {
       fontSize: "$$zhInfo_p",
     },
+  },
+  [`& ${NoteBox}`]: {
+    color: "$$color",
+    fontSize: "$$note_p",
   },
 
   variants: {
@@ -122,9 +133,11 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
+        $$zhInfo_mb: `calc($$height * 0.035)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
+        $$note_p: `calc($$height * 0.015)`,
       },
       oneSide: {
         $$color: "$colors$surfaceText",
@@ -132,9 +145,11 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
+        $$zhInfo_mb: `calc($$height * 0.035)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
+        $$note_p: `calc($$height * 0.015)`,
       },
       resizedDefault: {
         $$color: "$colors$defaultText",
@@ -142,9 +157,11 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
+        $$zhInfo_mb: `calc($$height * 0.035)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
+        $$note_p: `calc($$height * 0.019)`,
       },
       default: {
         $$color: "$colors$defaultText",
@@ -152,9 +169,11 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.01)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.015)`,
+        $$zhInfo_mb: `calc($$height * 0.035)`,
         $$zhInfo_h3: `calc($$height * 0.01)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.014)`,
+        $$note_p: `calc($$height * 0.014)`,
       },
     },
   },
@@ -297,6 +316,11 @@ const CopyBox = ({ layoutType }: { layoutType: LayoutType }) => {
           <h3>線上公證</h3>
           <p>台灣時間 二零二二年 二月十六日 凌晨四點半</p>
         </ZhInfoBox>
+        <NoteBox>
+          <span>Live stream URL will be posted soon</span>
+          <span> / </span>
+          <span>直播連結將於當日分享</span>
+        </NoteBox>
       </InfoBox>
     </Root>
   );
