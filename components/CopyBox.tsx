@@ -94,6 +94,11 @@ const NoteBox = styled("p", {
   fontWeight: 400,
   textAlign: "center",
   fontFamily: "$fonts$zh",
+  transform: "translate3d(0, -4px, 0)",
+
+  "& a": {
+    textDecoration: "underline",
+  },
 });
 const InfoBox = styled(Box, {
   [`& ${EnInfoBox}`]: {
@@ -123,6 +128,10 @@ const InfoBox = styled(Box, {
   [`& ${NoteBox}`]: {
     color: "$$color",
     fontSize: "$$note_p",
+
+    "& a": {
+      color: "$$color",
+    },
   },
 
   variants: {
@@ -133,7 +142,7 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
-        $$zhInfo_mb: `calc($$height * 0.035)`,
+        $$zhInfo_mb: `calc($$height * 0.03)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
@@ -145,7 +154,7 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
-        $$zhInfo_mb: `calc($$height * 0.035)`,
+        $$zhInfo_mb: `calc($$height * 0.03)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
@@ -157,7 +166,7 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.013)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.0195)`,
-        $$zhInfo_mb: `calc($$height * 0.035)`,
+        $$zhInfo_mb: `calc($$height * 0.03)`,
         $$zhInfo_h3: `calc($$height * 0.014)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.019)`,
@@ -169,7 +178,7 @@ const InfoBox = styled(Box, {
         $$enInfo_h3: `calc($$height * 0.01)`,
         $$enInfo_h3Mb: `calc($$height * 0.008)`,
         $$enInfo_p: `calc($$height * 0.015)`,
-        $$zhInfo_mb: `calc($$height * 0.035)`,
+        $$zhInfo_mb: `calc($$height * 0.03)`,
         $$zhInfo_h3: `calc($$height * 0.01)`,
         $$zhInfo_h3Mb: `calc($$height * 0.008)`,
         $$zhInfo_p: `calc($$height * 0.014)`,
@@ -317,9 +326,21 @@ const CopyBox = ({ layoutType }: { layoutType: LayoutType }) => {
           <p>台灣時間 二零二二年 二月十六日 凌晨四點半</p>
         </ZhInfoBox>
         <NoteBox>
-          <span>Live stream URL will be posted soon</span>
+          <a
+            href="https://meet.google.com/com-aysf-sfm"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Google Meet live stream link
+          </a>
           <span> / </span>
-          <span>直播連結將於當日分享</span>
+          <a
+            href="https://meet.google.com/com-aysf-sfm"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Google Meet 直播連結
+          </a>
         </NoteBox>
       </InfoBox>
     </Root>
